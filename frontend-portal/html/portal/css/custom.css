@@ -1,0 +1,84 @@
+h1, h2, h3, h4, h5, h6 {
+	color: black;
+	}
+
+#side-carousel img {
+	margin: 0 auto;
+	}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-blurb {
+    padding: 30px 0;
+    margin-top: 20px;
+    background-color: #eee;
+    color: black;
+}
+    
+.footer-blurb-item {
+    padding: 20px;
+    }
+ 
+.small-print {
+	background-color: #fff;
+	padding: 30px 0;
+}
+
+.feature,
+.page-intro,
+.article-intro,
+.small-print {
+	text-align: center;
+	}
+
+input {
+	max-width: 400px;
+}
+
+.accountnr {
+	cursor: pointer;
+}
+
+.panel-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-body--agent {
+  padding: 20px;
+  display: flex;
+  column-gap: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.panel-userinfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-body--agent img {
+  border-radius: 20px;
+}
+
+/* adapted from https: //www.digitalocean.com/community/tutorials/how-to-change-a-css-background-images-opacity */
+.container-fluid:before {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  background-image: url('../img/pexels-vedanti-242587.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#localdevindicator {
+    color: white;
+}

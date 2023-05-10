@@ -1,0 +1,8 @@
+version: '3'
+services:
+  accountholder:
+    build:
+      context: .
+    image: adamsandor83/accountholder:latest
+    ports:
+      - "8080:8080"

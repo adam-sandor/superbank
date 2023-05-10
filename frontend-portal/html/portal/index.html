@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!-- Template by Quackit.com -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>SuperBank - Customer Support Portal</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script src="https://banking-demo.expo.styralab.com/auth/js/keycloak.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img height="25px" src="img/logo.webp"></a>
+            </div>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">Support Portal</a>
+                    </li>
+                    <li>
+                        <a id="logout" href="#" style="display: none">Log Out</a>
+                    </li>
+					<li>
+						<span id="localdevindicator" style="display: none">LOCAL DEV MODE ACTIVE</span>
+					</li>
+                </ul>
+
+				<!-- Search -->
+				<form class="navbar-form navbar-right" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
+				</form>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+<div class="container-fluid">
+
+		<!-- Left Column -->
+		<div class="col-sm-2">
+
+			<!-- List-Group Panel -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1 class="panel-title"><span class="glyphicon glyphicon-random"></span> Last Viewed Accounts</h1>
+				</div>
+				<div class="list-group">
+					<div class="list-group-item accountnr">EU12345435345435345</div>
+					<div class="list-group-item accountnr">US12345435345444444</div>
+				</div>
+			</div>
+		</div><!--/Left Column-->
+
+
+		<!-- Center Column -->
+		<div class="col-sm-7">
+
+			<!-- Alert -->
+			<div id="error" class="alert alert-danger alert-dismissible" role="alert" style="display: none">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<p class="error-text"></p>
+			</div>
+
+			<!-- Articles -->
+			<div class="row">
+				<div class="col-xs-12">
+					<h2>Account Operations</h2>
+					<p class="result"></p>
+					<div class="panel-body">
+						<div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="account-iban-input" name="accountId" placeholder="Account ID">
+							</div>
+							<button id="account-details" class="btn btn-default" style="display: none" title="View details of the account holder">Details</button>
+							<button id="account-transactions" class="btn btn-default" style="display: none" title="Transaction history for the user">Transactions</button>
+							<button id="account-block" class="btn btn-default" style="display: none">Block</button>
+						</div>
+						<hr>
+						<div id="data-table"></div>
+					</div>
+				</div>
+			</div>
+		</div><!--/Center Column-->
+
+
+	  <!-- Right Column -->
+	  <div class="col-sm-3">
+
+			<!-- Form -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-log-in"></span>
+						User Information
+					</h3>
+				</div>
+			  <div class="panel-body--agent">
+				  <div class="panel-userinfo">
+					  <div id="user-full-name" style="font-weight: bold"></div>
+  					<div id="user-role"></div>
+	  				<div id="user-role-level"></div>
+		  			<div id="user-geo-region"></div>
+			  	</div>
+				  <img id="agent-pic" src="" width="150px" height="150px">
+				</div>
+			</div>
+ 
+			<!-- Progress Bars -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-scale"></span> 
+						Tickets
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="progress">
+						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100"
+						aria-valuemin="0" aria-valuemax="100" style="width:100%">
+							Priority 1
+						</div>
+					</div>
+					<div class="progress">
+						<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80"
+						aria-valuemin="0" aria-valuemax="100" style="width:80%">
+							Priority 2
+						</div>
+					</div>
+					<div class="progress">
+						<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45"
+						aria-valuemin="0" aria-valuemax="100" style="width:45%">
+							Priority 3
+						</div>
+					</div>
+					<div class="progress">
+						<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="35"
+						aria-valuemin="0" aria-valuemax="100" style="width:35%">
+							Pririty 4
+						</div>
+					</div>
+				</div>
+			</div>
+
+	  </div><!--/Right Column -->
+
+	</div><!--/container-fluid-->
+	
+	<footer>
+		<div class="footer-blurb">
+
+        </div>
+
+        <div class="small-print">
+        	<div class="container">
+        		<p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+        		<p>Copyright &copy; Styra.com 2021 </p>
+        	</div>
+        </div>
+	</footer>
+
+	
+    <!-- jQuery -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	
+	<!-- IE10 viewport bug workaround -->
+	<script src="js/ie10-viewport-bug-workaround.js"></script>
+	
+	<!-- Placeholder Images -->
+	<script src="js/holder.min.js"></script>
+
+	<script src="js/portal.js"></script>
+	
+</body>
+
+</html>
