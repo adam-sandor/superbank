@@ -17,6 +17,12 @@ spec:
             - "--log-level=error"
             - "--addr=http://localhost:8181"
             - "--diagnostic-addr=0.0.0.0:8282"
+          env:
+            - name: GCS_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: gcs-credentials
+                  key: pk
           volumeMounts:
             - readOnly: true
               mountPath: /config
