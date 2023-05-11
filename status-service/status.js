@@ -8,8 +8,8 @@ app.get('/statuses', async (req, res) => {
         const urls = ['http://account/status', 'http://accountholder/status', 'http://permissions/status'];
         const results = await Promise.all(urls.map(url => fetch(url)));
         const statusCodes = await Promise.all(results.map(result => result.status));
-        const allOk = statusCodes.every(code => code === 200);
-        res.status(200).json({ statusCodes });
+        res.status(200).json({ "Account Service": statusCodes[0], "AccountHolder Service:": statusCodes[1],
+            "Permissions Service": statusCodes[2] });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
