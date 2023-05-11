@@ -24,7 +24,6 @@ allow {
   input.parsed_path = ["account", "v2", account, "details"]
   "customer_support" in jwt.realm_access.roles
   jwt.role_level >= 2
-  account_territory(account) == jwt.geo_region
 }
 
 allow {
@@ -32,7 +31,6 @@ allow {
   input.parsed_path = ["account", "v2", account, "transactions"]
   "customer_support" in jwt.realm_access.roles
   jwt.role_level >= 3
-  account_territory(account) == jwt.geo_region
 }
 
 allow {
@@ -49,10 +47,6 @@ allow {
 
 spiffe(service) = id {
     id := concat("", ["spiffe://cluster.local/ns/banking-demo/sa/", service, "-sa"])
-}
-
-account_territory(iban) = t {
-    t := substring(iban, 0, 2)
 }
 
 jwt := payload {

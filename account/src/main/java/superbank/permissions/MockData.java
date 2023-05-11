@@ -22,9 +22,8 @@ public class MockData {
     private static Logger log = LoggerFactory.getLogger(MockData.class);
 
     public void initialize() {
-        Account account1 = accountRepository.save(new Account("EU12345435345435345", 1, "EU"));
+        Account account1 = accountRepository.save(new Account("NL12345435345435345", 1, "EU"));
         log.info("Mock account IBAN: {}", account1.getIban());
-        Account account2 = accountRepository.save(new Account("US12345435345444444", 1, "US"));
         tr.save(new Transaction("SK54354656343444", 135.2, account1, Instant.parse("2021-12-05T10:15:30.00Z"), OUTGOING, SUCCESS, null));
         tr.save(new Transaction("SK54354656343444", 115.5, account1, Instant.parse("2021-12-02T10:15:30.00Z"), OUTGOING, SUCCESS, null));
         tr.save(new Transaction("SK54354656343444",  35.0, account1, Instant.parse("2021-12-01T08:15:30.00Z"), OUTGOING, SUCCESS, null));
@@ -32,5 +31,11 @@ public class MockData {
         tr.save(new Transaction("SK54354656343444",  122.1, account1, Instant.parse("2021-11-05T10:15:30.00Z"), OUTGOING, FAILURE, "Technical Error"));
         tr.save(new Transaction("SK54354656343444",  135.2, account1, Instant.parse("2021-11-11T10:15:30.00Z"), OUTGOING, FAILURE, "Lack of Funds"));
         tr.save(new Transaction("SK54354656343444",  135.2, account1, Instant.parse("2021-11-15T10:15:30.00Z"), OUTGOING, FAILURE, "Lack of Funds"));
+
+        Account account2 = accountRepository.save(new Account("CA12345435345444444", 1, "US"));
+        tr.save(new Transaction("CA43251209878777", 135.2, account2, Instant.parse("2021-12-05T10:15:30.00Z"), OUTGOING, SUCCESS, null));
+        tr.save(new Transaction("CA43251209878777", 115.5, account2, Instant.parse("2021-12-02T10:15:30.00Z"), OUTGOING, SUCCESS, null));
+        tr.save(new Transaction("CA43251209878777",  122.1, account2, Instant.parse("2021-11-05T10:15:30.00Z"), OUTGOING, FAILURE, "Technical Error"));
+        tr.save(new Transaction("CA43251209878777",  135.2, account2, Instant.parse("2021-11-15T10:15:30.00Z"), OUTGOING, FAILURE, "Lack of Funds"));
     }
 }

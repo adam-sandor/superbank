@@ -109,7 +109,7 @@ class AccountControllerWithOpa {
 
 			TransactionType typeFilter = transactionFilters.get("type") != null ? TransactionType.valueOf(transactionFilters.get("type").asText()) : null;
 			TransactionResult resultFilter = transactionFilters.get("result") != null ? TransactionResult.valueOf(transactionFilters.get("result").asText()) : null;
-			List<Transaction> dbTransactions = transactionRepository.findTransactions(resultFilter, typeFilter);
+			List<Transaction> dbTransactions = transactionRepository.findTransactions(account.get(), resultFilter, typeFilter);
 
 			ObjectMapper mapper = new ObjectMapper();
 			ObjectNode response = mapper.createObjectNode();
