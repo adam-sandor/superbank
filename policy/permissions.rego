@@ -7,7 +7,7 @@ ui_permissions["account/transactions"] {
     jwt.role_level >= 2
 }
 ui_permissions["account/block"] {
-    jwt.role_level >= 5
+    jwt.role_level >= 3
 }
 
 default allowed = false

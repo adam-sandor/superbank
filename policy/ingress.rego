@@ -21,16 +21,18 @@ allow {
 
 allow {
   destination == spiffe("account")
-  input.parsed_path = ["account", "v2", account, "details"]
+  input.parsed_path = ["account", "v2", location, account, "details"]
   "customer_support" in jwt.realm_access.roles
   jwt.role_level >= 2
+  jwt.geo_region == location
 }
 
 allow {
   destination == spiffe("account")
-  input.parsed_path = ["account", "v2", account, "transactions"]
+  input.parsed_path = ["account", "v2", location, account, "transactions"]
   "customer_support" in jwt.realm_access.roles
   jwt.role_level >= 3
+  jwt.geo_region == location
 }
 
 allow {

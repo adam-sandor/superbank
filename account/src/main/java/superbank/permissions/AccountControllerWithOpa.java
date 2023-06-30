@@ -52,9 +52,10 @@ class AccountControllerWithOpa {
 		this.transactionRepository = transactionRepository;
 	}
 
-	@GetMapping("/account/v2/{accountIban}/details")
-	ResponseEntity<?> accountDetails(@PathVariable(name = "accountIban") String accountIban,
-													 @RequestHeader(name = "Authorization") String authHeader)
+	@GetMapping("/account/v2/{location}/{accountIban}/details")
+	ResponseEntity<?> accountDetails(@PathVariable(name = "location") String location,
+									 @PathVariable(name = "accountIban") String accountIban,
+									 @RequestHeader(name = "Authorization") String authHeader)
 			throws Exception {
 		DecodedJWT jwt = JWT.decode(AuthHeader.getBearerToken(authHeader));
 		Optional<Account> account = accountRepository.findAccountByIban(accountIban);
@@ -86,9 +87,11 @@ class AccountControllerWithOpa {
 		}
 	}
 
-	@GetMapping("/account/v2/{accountIban}/transactions")
-	ResponseEntity<?> accountTransactions(@PathVariable(name = "accountIban") String accountIban,
-												   @RequestHeader(name = "Authorization") String authHeader) {
+	@GetMapping("/account/v2/{location}/{accountIban}/transactions")
+	ResponseEntity<?> accountTransactions(
+			@PathVariable(name = "location") String location,
+			@PathVariable(name = "accountIban") String accountIban,
+			@RequestHeader(name = "Authorization") String authHeader) {
 		DecodedJWT jwt = JWT.decode(AuthHeader.getBearerToken(authHeader));
 		Optional<Account> account = accountRepository.findAccountByIban(accountIban);
 
@@ -130,9 +133,11 @@ class AccountControllerWithOpa {
 		}
 	}
 
-	@GetMapping("/account/v2/{accountIban}/block")
-	ResponseEntity<?> accountBlock(@PathVariable(name = "accountIban") String accountIban,
-										  @RequestHeader(name = "Authorization") String authHeader) {
+	@GetMapping("/account/v2/{location}/{accountIban}/block")
+	ResponseEntity<?> accountBlock(
+			@PathVariable(name = "location") String location,
+			@PathVariable(name = "accountIban") String accountIban,
+			@RequestHeader(name = "Authorization") String authHeader) {
 		return ResponseEntity.ok().build();
 	}
 

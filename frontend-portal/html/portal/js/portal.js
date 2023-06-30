@@ -51,7 +51,10 @@ function readyFn() {
     }
 }
 
+user = {}
+
 function permissionsReady(data) {
+    user.subject = data.subject
     if (data.permissions.includes('account/details')) {
         $("#account-details").show()
     }
@@ -206,7 +209,7 @@ function accountServiceUrl() {
     if (window.location.hash === '#account-controller-opa-disabled') {
         return '/account/'
     } else {
-        return '/account/v2/'
+        return '/account/v2/' + user.subject.geo_region + "/"
     }
 }
 
